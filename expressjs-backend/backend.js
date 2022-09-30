@@ -73,8 +73,12 @@ app.get('/users/:id', (req, res) => {
 
 app.post('/users', (req, res) => { // add data validation
     const userToAdd = req.body;
+    if (req.params['id'] === undefined)
+    {
+        userToAdd['id'] = generateID();
+    }
     addUser(userToAdd);
-    res.status(200).end();
+    res.status(201).end();
 });
 
 app.delete('/users/:id', (req, res) => {
@@ -90,6 +94,15 @@ app.delete('/users/:id', (req, res) => {
 
 function addUser(user){
     users['users_list'].push(user);
+}
+
+function generateID(){
+    const alphabet = 'abcdefghijklmnopqrstuvwxyz';
+    var id = '';
+    for (var i=0; i<3; i++){
+        id += alphabet.charAt(Math.floor(Math.random() * alphabet.length));
+    }
+    return id.concat((Math.floor(Math.random() * 900) + 100).toString());
 }
 
 function findUserById(id) {
