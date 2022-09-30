@@ -88,7 +88,7 @@ app.delete('/users/:id', (req, res) => {
         res.status(404).send('Resources not found.');
     else {
         users.users_list.splice(users.users_list.indexOf(result), 1);
-        res.status(200).end()
+        res.status(204).end()
     }
 });
 

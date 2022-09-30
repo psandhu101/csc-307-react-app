@@ -41,11 +41,13 @@ function MyApp() {
   async function removeOneCharacter (index) {
    try {
       const response = await axios.delete('http://localhost:5000/users/'.concat(characters[index].id));
-      const updated = characters.filter((character, i) => {
-        return i !== index
-      });
-      setCharacters(updated);
-      return response.data_list
+      if (response && response.status == 204)
+      {
+        const updated = characters.filter((character, i) => {
+          return i !== index
+        });
+        setCharacters(updated);
+      }
    }
    catch (error){
       //We're not handling errors. Just logging into the console.
