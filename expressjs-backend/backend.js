@@ -78,7 +78,7 @@ app.post('/users', (req, res) => { // add data validation
         userToAdd['id'] = generateID();
     }
     addUser(userToAdd);
-    res.status(201).end();
+    res.status(201).send(userToAdd);
 });
 
 app.delete('/users/:id', (req, res) => {
