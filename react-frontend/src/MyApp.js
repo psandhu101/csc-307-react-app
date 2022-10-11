@@ -40,7 +40,7 @@ function MyApp() {
 
   async function removeOneCharacter (index) {
    try {
-      const response = await axios.delete('http://localhost:5000/users/'.concat(characters[index].id));
+      const response = await axios.delete('http://localhost:5000/users/'.concat(characters[index]._id));
       if (response && response.status == 204)
       {
         const updated = characters.filter((character, i) => {
